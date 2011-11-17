@@ -102,5 +102,5 @@
       <testDataPublishers/>
     </hudson.tasks.junit.JUnitResultArchiver>
   </publishers>
-  <buildWrappers/>
+  %(build_wrappers)s
 </project>
