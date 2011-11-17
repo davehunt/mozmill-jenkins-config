@@ -38,6 +38,9 @@ nodes = (
      'environment': 'linux'},
     {'labels': ['ubuntu', '10.10x64'],
      'platforms': ['linux', 'linux64'],
+     'environment': 'linux'},
+    {'labels': ['ubuntu', '11.04'],
+     'platforms': ['linux'],
      'environment': 'linux'})
 
 testrun_command = '%(script)s ./testrun_%(type)s.py --port=2424${EXECUTOR_NUMBER} --junit=results.xml --logfile=%(type)s.log --report=http://mozmill-archive.brasstacks.mozilla.com/db/ %(options)s .'
