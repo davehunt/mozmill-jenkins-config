@@ -58,23 +58,18 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
   </properties>
-  <scm class="hudson.plugins.mercurial.MercurialSCM">
-    <source>http://hg.mozilla.org/qa/mozmill-automation</source>
-    <modules></modules>
-    <clean>true</clean>
-    <forest>false</forest>
-    <browser class="hudson.plugins.mercurial.browser.HgWeb">
-      <url>http://hg.mozilla.org/qa/mozmill-automation/</url>
-    </browser>
-  </scm>
+  <scm class="hudson.scm.NullSCM"/>
   <assignedNode>%(labels)s</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers class="vector"/>
-  <concurrentBuild>false</concurrentBuild>
+  <concurrentBuild>true</concurrentBuild>
   <builders>
+    <hudson.tasks.Shell>
+      <command>rm -Rf *</command>
+    </hudson.tasks.Shell>
     <hudson.plugins.copyartifact.CopyArtifact>
       <projectName>download-mozmill-environments/PLATFORM=%(environment)s</projectName>
       <filter></filter>
@@ -85,7 +80,10 @@
       <command>unzip %(environment)s-$MOZMILL_VERSION.zip</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>./download.py --build=$BUILD --locale=$LOCALE --platform=$PLATFORM --type=$BUILD_TYPE --version=$VERSION --branch=$BRANCH</command>
+      <command>./mozmill-env/run.sh hg clone http://hg.mozilla.org/qa/mozmill-automation</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>./mozmill-automation/download.py --build=$BUILD --locale=$LOCALE --platform=$PLATFORM --type=$BUILD_TYPE --version=$VERSION --branch=$BRANCH</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>%(testrun_command)s</command>
@@ -102,5 +100,5 @@
       <testDataPublishers/>
     </hudson.tasks.junit.JUnitResultArchiver>
   </publishers>
-  <buildWrappers/>
+  %(build_wrappers)s
 </project>

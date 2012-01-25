@@ -43,7 +43,7 @@ nodes = (
      'platforms': ['linux'],
      'environment': 'linux'})
 
-testrun_command = '%(script)s ./testrun_%(type)s.py --port=2424${EXECUTOR_NUMBER} --junit=results.xml --logfile=%(type)s.log --report=http://mozmill-ci.blargon7.com/db/ %(options)s .'
+testrun_command = '%(script)s ./mozmill-automation/testrun_%(type)s.py --port=2424${EXECUTOR_NUMBER} --junit=results.xml --logfile=%(type)s.log --report=http://mozmill-ci.blargon7.com/db/ %(options)s .'
 
 def main():
     j = jenkins.Jenkins('http://localhost:8080')
@@ -62,11 +62,16 @@ def main():
                 'type': type,
                 'options': 'options' in testrun and ' '.join(testrun.get('options')) or ''
             }
+            build_wrappers = [ ]
+            run_xvnc = '<hudson.plugins.xvnc.Xvnc><takeScreenshot>false</takeScreenshot></hudson.plugins.xvnc.Xvnc>'
+            if 'linux' in platforms:
+                build_wrappers.append(run_xvnc)
             doc = xml.dom.minidom.parseString(template.read() % {
                 'labels': '&amp;&amp;'.join(labels),
                 'environment': node.get('environment'),
                 'platforms': platforms,
-                'testrun_command': command})
+                'testrun_command': command,
+                'build_wrappers': '<buildWrappers>' + '\n'.join(build_wrappers) + '</buildWrappers>'})
             if j.job_exists(job_name):
                 j.reconfig_job(job_name, doc.toxml())
             else:
