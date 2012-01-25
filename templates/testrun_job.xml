@@ -77,7 +77,7 @@
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>unzip %(environment)s-$MOZMILL_VERSION.zip</command>
+      <command>unzip $MOZMILL_VERSION-%(environment)s.zip</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>./mozmill-env/run.sh hg clone http://hg.mozilla.org/qa/mozmill-automation</command>
