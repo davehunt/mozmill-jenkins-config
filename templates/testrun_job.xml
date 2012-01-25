@@ -71,7 +71,7 @@
       <command>rm -Rf *</command>
     </hudson.tasks.Shell>
     <hudson.plugins.copyartifact.CopyArtifact>
-      <projectName>download-mozmill-environments/PLATFORM=%(environment)s</projectName>
+      <projectName>download-mozmill-environments/NODE=master,PLATFORM=%(environment)s</projectName>
       <filter></filter>
       <target></target>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
