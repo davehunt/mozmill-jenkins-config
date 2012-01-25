@@ -76,7 +76,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.plugins.copyartifact.CopyArtifact>
-      <projectName>mozmill-environment-%(environment)s</projectName>
+      <projectName>download-mozmill-environments/PLATFORM=%(environment)s</projectName>
       <filter></filter>
       <target></target>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
