@@ -32,7 +32,7 @@
           <defaultValue></defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.StringParameterDefinition>
-          <name>BUILD</name>
+          <name>BUILD_NUMBER</name>
           <description></description>
           <defaultValue>1</defaultValue>
         </hudson.model.StringParameterDefinition>
@@ -83,7 +83,7 @@
       <command>./mozmill-env/run.sh hg clone http://hg.mozilla.org/qa/mozmill-automation</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>./mozmill-automation/download.py --build=$BUILD --locale=$LOCALE --platform=$PLATFORM --type=$BUILD_TYPE --version=$VERSION --branch=$BRANCH</command>
+      <command>./mozmill-automation/download.py --build-number=$BUILD_NUMBER --locale=$LOCALE --platform=$PLATFORM --type=$BUILD_TYPE --version=$VERSION --branch=$BRANCH</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>%(testrun_command)s</command>

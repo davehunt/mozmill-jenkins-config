@@ -65,7 +65,7 @@ def main():
                         'PLATFORM': platform,
                         'BUILD_TYPE': build_type,
                         'VERSION': version,
-                        'BUILD': build or '1',
+                        'BUILD_NUMBER': build or '1',
                         'LOCALE': locale
                     }
                 })
