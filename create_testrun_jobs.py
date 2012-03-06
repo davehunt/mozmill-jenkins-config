@@ -15,13 +15,13 @@ testruns = (
      'options': ['--with-untrusted']})
 
 nodes = (
-    {'labels': ['windows', '2k', x32],
+    {'labels': ['windows', '2k', 'x32'],
      'platforms': ['win32'],
      'environment': 'windows'},
-    {'labels': ['windows', 'xp', x32],
+    {'labels': ['windows', 'xp', 'x32'],
      'platforms': ['win32'],
      'environment': 'windows'},
-    {'labels': ['windows', 'vista', x32],
+    {'labels': ['windows', 'vista', 'x32'],
      'platforms': ['win32'],
      'environment': 'windows'},
     {'labels': ['windows', '7', 'x64'],
