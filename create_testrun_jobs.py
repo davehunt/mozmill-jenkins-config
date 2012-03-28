@@ -40,7 +40,7 @@ nodes = (
      'platforms': ['linux64'],
      'environment': 'linux'})
 
-testrun_command = '%(script)s ./mozmill-automation/testrun_%(type)s.py --port=2424${EXECUTOR_NUMBER} --junit=results.xml --logfile=%(type)s.log --report=http://mozmill-ci.blargon7.com/db/ %(options)s .'
+testrun_command = '%(script)s ./mozmill-automation/testrun_%(type)s.py --port=2424${EXECUTOR_NUMBER} --junit=results.xml --logfile=%(type)s.log --report=http://mozmill-ondemand.blargon7.com/db/ %(options)s .'
 
 def main():
     j = jenkins.Jenkins('http://localhost:8080')
